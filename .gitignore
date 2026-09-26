@@ -1,0 +1,19 @@
+# 1. 파이썬 임시 컴파일 캐시
+__pycache__/
+*.pyc
+
+# 2. 대용량 수치 데이터셋
+data/
+*.pt
+*.npy
+*.npz
+
+# 3. 모델 가중치 및 실험 결과물
+runs/
+checkpoints/
+*.pth
+
+# 4. 가상환경 및 에디터 설정
+.venv/
+venv/
+.vscode/
