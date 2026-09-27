@@ -1,0 +1,15 @@
+{
+    "equation": "Burgers_1D",
+    "nx": 200,
+    "m_sensors": 200,
+    "epochs": 8000,
+    "lr": 0.001,
+    "step_size": 2000,
+    "gamma": 0.5,
+    "hidden_dim": 256,
+    "p": 128,
+    "device": "cpu",
+    "timestamp": "20260926_201442",
+    "training_time_sec": 2287.514215707779,
+    "best_val_loss": 0.00043541411287151277
+}
