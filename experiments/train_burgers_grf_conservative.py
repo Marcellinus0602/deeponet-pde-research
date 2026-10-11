@@ -1,4 +1,3 @@
-import os
 import sys
 from pathlib import Path
 from datetime import datetime
@@ -37,14 +36,10 @@ solver_fn = solve_burgers_1d if SOLVER == "upwind" else solve_burgers_1d_conserv
 # -------------------------------------------------------------
 # 0. 디렉터리 및 실험 고유 아카이브 설정
 # -------------------------------------------------------------
-# 데이터·결과를 저장할 최상위 폴더: 환경변수가 있으면 그 경로(Colab 에서는 Google Drive), 없으면 프로젝트 폴더 안
-DATA_ROOT = Path(os.environ.get("DEEPONET_DATA_DIR", PROJECT_ROOT / "data"))
-RUNS_ROOT = Path(os.environ.get("DEEPONET_RUNS_DIR", PROJECT_ROOT / "runs"))
-
 # 실험 실행 시마다 중복 덮어쓰기 방지를 위한 타임스탬프 폴더 생성 (경우마다 폴더 분리)
 timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-EXP_DIR = RUNS_ROOT / f"burgers_{IC_TYPE}_{SOLVER}" / f"exp_{timestamp}"
-DATA_DIR = DATA_ROOT / "burgers"
+EXP_DIR = PROJECT_ROOT / "runs" / f"burgers_{IC_TYPE}_{SOLVER}" / f"exp_{timestamp}"
+DATA_DIR = PROJECT_ROOT / "data" / "burgers"
 
 EXP_DIR.mkdir(parents=True, exist_ok=True)
 DATA_DIR.mkdir(parents=True, exist_ok=True)
@@ -205,7 +200,7 @@ plt.savefig(EXP_DIR / "loss_curve.png", dpi=200)
 plt.close()
 
 # 4) 4가지 경우의 test 결과를 한 파일에 모아서 비교하기 위한 기록 (실행할 때마다 한 줄 추가)
-results_path = RUNS_ROOT / "burgers_results.csv"
+results_path = PROJECT_ROOT / "runs" / "burgers_results.csv"
 if not results_path.exists():
     with open(results_path, "w", encoding="utf-8") as f:
         f.write("ic_type,solver,test_mse,test_rel_l2,best_val_mse,exp_dir\n")
